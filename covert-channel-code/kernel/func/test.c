@@ -2,7 +2,7 @@
 #include <stdint.h>
 #include "getparam.c"
 
-#define MENU_SELECT "Select the function to run in the delay time:\r\n \
+#define MENU_SELECT "Running my modified fork\r\n Select the function to run in the delay time:\r\n \
 0: no operation\r\n 1: add\r\n 2: sub\r\n 3: mul\r\n 4: div\r\n 5: mod|: "
 
 void print_hex(uint32_t a, int b) {
@@ -155,14 +155,14 @@ void puf_read_itvl(uint32_t start_addr, uint32_t end_addr, uint32_t add_mode) {
 
         }
     }
-    while (1) {
+    //while (1) {
 
         uart_puts("puf_cell=");
         print_int(puf_cell, 5);
         uart_puts("\r\n");
-        delay_ms(100);
+        //delay_ms(100);
 
-    }
+    //}
 }
 
 
