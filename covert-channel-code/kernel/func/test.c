@@ -6,6 +6,7 @@
 0: no operation\r\n 1: add\r\n 2: sub\r\n 3: mul\r\n 4: div\r\n 5: mod|: "
 
 void print_hex(uint32_t a, int b) {
+    uart_puts("print hex func in test.c\n");
     for (int i = b - 1; i >= 0; i--) {
         uint32_t mask = 0xf << (i * 4);
         int cur = (mask & a) >> (i * 4);
@@ -63,6 +64,7 @@ void print_hex(uint32_t a, int b) {
 }
 
 void print_int(int a, int b) {
+    uart_puts("print int func in test.c\n");
     for (int i = pow(10, b); i >= 1; i = div(i, 10)) {
         int cur = div(a, i);
         a = a - cur * i;
@@ -103,6 +105,7 @@ void print_int(int a, int b) {
 }
 
 uint32_t cal(uint32_t x) {
+    uart_puts("cal func in test.c\n");
     uint32_t n;
     for (n = 0; x; n++)
         x &= x - 1;
@@ -110,6 +113,7 @@ uint32_t cal(uint32_t x) {
 }
 
 void puf_read_itvl(uint32_t start_addr, uint32_t end_addr, uint32_t add_mode) {
+    uart_puts("puf read itvl hex func in test.c\n");
     uint32_t itvl = (end_addr - start_addr) / 0x1000000;
 
     uint32_t puf_read_val = 0;
@@ -174,6 +178,7 @@ void puf_read_itvl(uint32_t start_addr, uint32_t end_addr, uint32_t add_mode) {
  * P.S. puf_init_value = 0
 **/
 void TestAllAddress() {
+    uart_puts("test all address func in test.c\n");
     uart_puts("Choose address mode: 0:brc 1:rbc|: ");
     int addmode = getaddmode();
     mailbox_write(addmode);
@@ -222,6 +227,7 @@ void TestAllAddress() {
  * Set: puf_start_address, puf_init_value, puf_size, decay_time, CPU_function
 **/
 void TestPuf() {
+    uart_puts("test puf func in test.c\n");
     uart_puts("Choose address mode: 0:brc 1:rbc|: ");
     int addmode = getaddmode();
     mailbox_write(addmode);
@@ -268,6 +274,7 @@ void TestPuf() {
  * Function: Test puf of contiguous address segment with pre-written args
 **/
 void TestCustom() {
+    uart_puts("test custom func in test.c\n");
     uart_puts("Starting custom extractor...");
     //uart_puts("Choose address mode: 0:brc 1:rbc|: ");
     int addmode = 0;
@@ -319,6 +326,7 @@ void TestCustom() {
  * P.S. puf_size=1024*4byte(32bit, 1 row)
 **/
 void TestOneRow() {
+    uart_puts("test one row func in test.c\n");
     uart_puts("Choose address mode: 0:brc 1:rbc|: ");
     int addmode = getaddmode();
     mailbox_write(addmode);
@@ -369,6 +377,7 @@ void TestOneRow() {
  * P.S. Test one row for each interval
 **/
 void TestAtInterval() {
+    uart_puts("test at interval func in test.c\n");
     uart_puts("Choose address mode: 0:brc 1:rbc|: ");
     int addmode = getaddmode();
     mailbox_write(addmode);
