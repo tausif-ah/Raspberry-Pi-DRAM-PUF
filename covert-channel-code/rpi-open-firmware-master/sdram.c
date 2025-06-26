@@ -506,6 +506,7 @@ static void puf_extracted()
 		// printf("address=%X-----------puf_value=%X\n",addr,puf_write_value);
 		addr=addr+4;
 	}
+        printf("puf extracted function in sdram.c\n");
 	printf("puf init complete\n");
 	//disable Refresh
 	printf("SD_SA:value=0x%08X--address=0x%08X\n",SD_SA,&(SD_SA));
