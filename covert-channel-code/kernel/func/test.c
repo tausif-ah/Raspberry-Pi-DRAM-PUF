@@ -144,7 +144,7 @@ void puf_read_itvl(uint32_t start_addr, uint32_t end_addr, uint32_t add_mode) {
                 if (sum_flip != 0) {
                     puf_cell += sum_flip;
                     // printf("log= %d, %04X, %03X, %08X\n", bank, row, col, puf_read_val);
-                    uart_puts("log= ");
+                    uart_puts("test log= ");
                     print_int(bank, 0);
                     uart_puts(", ");
                     print_hex(row, 4);
@@ -159,14 +159,14 @@ void puf_read_itvl(uint32_t start_addr, uint32_t end_addr, uint32_t add_mode) {
 
         }
     }
-    while (1) {
+    //while (1) {
 
-        uart_puts("puf_cell=");
+        uart_puts("in test.c puf_cell=");
         print_int(puf_cell, 5);
         uart_puts("\r\n");
         delay_ms(100);
 
-    }
+    //}
 }
 
 

@@ -292,7 +292,7 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 				if(sum_flip!=0)
 				{
 					puf_cell+=sum_flip;
-					printf("start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", start_addr, end_addr, addr, bank, row, col, puf_read_val);
+					printf("iteration = %d, start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", i, start_addr, end_addr, addr, bank, row, col, puf_read_val);
 				}
 				addr=addr+4;
 			}
@@ -301,7 +301,7 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 	}
 //	while(1)
 //	{
-		printf("puf_cell=%d\n",puf_cell);
+		printf("in puf_read_itvl GetPuf.c puf_cell=%d\n",puf_cell);
 		delay_ms(100);
 
 //	}
@@ -432,11 +432,11 @@ void puf_read_brc(unsigned long start_addr, unsigned long end_addr)
 	}
 //	while(1)
 //	{
-		printf("puf_cell=%d\n",puf_cell);
+		printf("in puf_read_brc GetPuf.c puf_cell=%d\n",puf_cell);
 		delay_ms(100);
 
 //	}
-	printf("total bitflip = %d \n",sum_flip );
+	printf("total bitflip (puf read brc) = %d \n",sum_flip );
 }
 
 /** 
