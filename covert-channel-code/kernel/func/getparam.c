@@ -4,7 +4,7 @@
 
 //pow(int number,int power)
 int pow(int a, int b) {
-  uart_puts("pow func in getparam.c\n");
+//  uart_puts("pow func in getparam.c\n");
     int result = 1;
     if (b == 0)
         result = 1;
@@ -17,7 +17,7 @@ int pow(int a, int b) {
 }
 
 int div(int a, int b) {
-    uart_puts("div func in getparam.c\n");
+//    uart_puts("div func in getparam.c\n");
     int result = 0;
     for (result = 0;; result++) {
         if (a < b)
@@ -30,7 +30,7 @@ int div(int a, int b) {
 
 //get 8-digit puf_address
 unsigned int getaddress() {
-    uart_puts("getaddress func in getparam.c\n");
+//    uart_puts("getaddress func in getparam.c\n");
     unsigned int address = 0;
     short flag = 0;
     unsigned char temp;
@@ -59,7 +59,7 @@ unsigned int getaddress() {
 
 // get puf_init_value
 uint32_t getinitvalue() {
-    uart_puts("getinitvalue func in getparam.c\n");
+//    uart_puts("getinitvalue func in getparam.c\n");
     uint32_t result = 0;
     while (1) {
         unsigned char temp = uart_getc();
@@ -81,7 +81,7 @@ uint32_t getinitvalue() {
 
 // get address_mode
 uint32_t getaddmode() {
-    uart_puts("getaddmode func in getparam.c\n");
+//    uart_puts("getaddmode func in getparam.c\n");
     uint32_t result = 0;
     while (1) {
         unsigned char temp = uart_getc();
@@ -100,7 +100,7 @@ uint32_t getaddmode() {
 
 // get decay_time
 int getdecaytime() {
-    uart_puts("getdecaytime func in getparam.c\n");
+//    uart_puts("getdecaytime func in getparam.c\n");
     int time = 0;
     short flag = 0;
     unsigned char temp;
@@ -120,7 +120,7 @@ int getdecaytime() {
 }
 
 int getfuncfreq() {
-    uart_puts("getfuncfreq func in getparam.c\n");
+//    uart_puts("getfuncfreq func in getparam.c\n");
     int freq = 0;
     short flag = 0;
     unsigned char temp;
@@ -141,7 +141,7 @@ int getfuncfreq() {
 
 // choose mode
 int get_mode() {
-    uart_puts("getmode func in getparam.c\n");
+//    uart_puts("getmode func in getparam.c\n");
     int mode = 0;
     while (1) {
         unsigned char temp = uart_getc();
