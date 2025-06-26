@@ -300,12 +300,12 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 
 		}
 	}
-	//while(1)
-	//{
+	while(1)
+	{
 		printf("puf_cell=%d\n",puf_cell);
-		//delay_ms(100);
+		delay_ms(100);
 
-	//}
+	}
 }
 
 /**
@@ -431,12 +431,12 @@ void puf_read_brc(unsigned long start_addr, unsigned long end_addr)
 		}
 		
 	}
-	//while(1)
-	//{
+	while(1)
+	{
 		printf("puf_cell=%d\n",puf_cell);
-	//	delay_ms(100);
+		delay_ms(100);
 
-	//}
+	}
 	printf("total bitflip = %d \n",sum_flip );
 }
 

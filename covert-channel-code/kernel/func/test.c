@@ -159,14 +159,14 @@ void puf_read_itvl(uint32_t start_addr, uint32_t end_addr, uint32_t add_mode) {
 
         }
     }
-    //while (1) {
+    while (1) {
 
         uart_puts("puf_cell=");
         print_int(puf_cell, 5);
         uart_puts("\r\n");
-        //delay_ms(100);
+        delay_ms(100);
 
-    //}
+    }
 }
 
 
