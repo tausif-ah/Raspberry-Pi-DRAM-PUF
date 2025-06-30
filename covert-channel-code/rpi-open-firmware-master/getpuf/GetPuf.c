@@ -96,12 +96,12 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	{
 		for(int tp=0;tp<=decay_time*20000;)
 		{
-			printf("first for loop in manual refresh function in getpuf.c\n");
+//			printf("first for loop in manual refresh function in getpuf.c\n");
 			if(freq_func==0)
 			{
 				while(1)
 				{
-					printf("infinite while loop in manual refresh function in getpuf.c\n");
+//					printf("infinite while loop in manual refresh function in getpuf.c\n");
 					__asm__ __volatile__ ("nop" :::);
 					uint32_t tin=ST_CLO;
 					
@@ -122,7 +122,7 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 			}
 			else
 			{
-				printf("else block 1 of manual refresh function in getpuf.c\n");
+//				printf("else block 1 of manual refresh function in getpuf.c\n");
 				ftp+=1;
 				mtp+=1;
 				tp+=1;
@@ -155,10 +155,10 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	}
 	else
 	{
-		printf("else block 2 for refresh function in getpuf.c\n");
+//		printf("else block 2 for refresh function in getpuf.c\n");
 		for(int tp=0;tp<=decay_time*1000;)
 		{
-			printf("2nd for loop in manual refresh function in getpuf.c\n");
+//			printf("2nd for loop in manual refresh function in getpuf.c\n");
 			delay_ms(1);
 			tp+=1;
 			if(tp%64==0)
@@ -171,7 +171,7 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	
 	if(function_count!=0)
 	{
-		printf("manual refresh function count in getpuf.c\n");
+//		printf("manual refresh function count in getpuf.c\n");
 		printf("function_count = %d\n",function_count );
 		printf("function time = %d us\n",ufunc_t);
 	}
@@ -207,7 +207,7 @@ void puf_init(unsigned long addr,unsigned int puf_size, unsigned int init_value)
 	printf("puf init function in getpuf.c\n");
 	for(unsigned int puf_write_loop=0;puf_write_loop<puf_size;puf_write_loop++)
 	{
-		printf("puf init for loop in getpuf.c\n");
+//		printf("puf init for loop in getpuf.c\n");
 		if ((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xdf000000))
 		{
 			if(inArray(addr))
@@ -262,76 +262,76 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 	unsigned long puf_cell=0;
 	unsigned long addr;
 
-	for (addr=start_addr;addr<end_addr;addr+=4)
-	{
-		if((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xe0000000))
-		{
-
-
-			unsigned long bank, row, col;
-			if(add_mode==0)
-			{
-				bank=(0x1c000000&addr)>>26;				//calculate the number of bank
-				row=(0x03fff000&addr)>>12;				//calculate the number of row
-				col=(0x00000ffc&addr)>>2;				//calculate the number of column
-			}
-			else
-			{
-				row=(0x1fff8000&addr)>>15;				//28:15
-				bank=(0x00007000&addr)>>12;				//14:12
-				col=(0x00000ffc&addr)>>2;				//calculate the number of column
-			}
-
-			/* calculate the number of bit-flip in one cell */
-			puf_read_val=mmio_read32(addr);
-			unsigned int sum_flip=cal(puf_read_val);
-			if(sum_flip!=0)
-			{
-				puf_cell+=sum_flip;
-				printf("start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", start_addr, end_addr, addr, bank, row, col, puf_read_val);
-			}
-
-		}
-
-	}
-//	for (int i = 0; ; i++)
+//	for (addr=start_addr;addr<end_addr;addr+=4)
 //	{
-//		addr=start_addr+i*itvl*0x1000;
-//
-//	    if(addr >= end_addr)
-//	    	break;
-//		else if((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xe0000000))
+//		if((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xe0000000))
 //		{
-//			for(unsigned int j=0; j<1024; j++)
+//
+//
+//			unsigned long bank, row, col;
+//			if(add_mode==0)
 //			{
+//				bank=(0x1c000000&addr)>>26;				//calculate the number of bank
+//				row=(0x03fff000&addr)>>12;				//calculate the number of row
+//				col=(0x00000ffc&addr)>>2;				//calculate the number of column
+//			}
+//			else
+//			{
+//				row=(0x1fff8000&addr)>>15;				//28:15
+//				bank=(0x00007000&addr)>>12;				//14:12
+//				col=(0x00000ffc&addr)>>2;				//calculate the number of column
+//			}
 //
-//				unsigned long bank, row, col;
-//			    if(add_mode==0)
-//				{
-//					bank=(0x1c000000&addr)>>26;				//calculate the number of bank
-//				    row=(0x03fff000&addr)>>12;				//calculate the number of row
-//				    col=(0x00000ffc&addr)>>2;				//calculate the number of column
-//				}
-//				else
-//				{
-//					row=(0x1fff8000&addr)>>15;				//28:15
-//				    bank=(0x00007000&addr)>>12;				//14:12
-//				    col=(0x00000ffc&addr)>>2;				//calculate the number of column
-//				}
-//
-//				/* calculate the number of bit-flip in one cell */
-//				puf_read_val=mmio_read32(addr);
-//				unsigned int sum_flip=cal(puf_read_val);
-//				if(sum_flip!=0)
-//				{
-//					puf_cell+=sum_flip;
-//					printf("iteration = %d, start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", i, start_addr, end_addr, addr, bank, row, col, puf_read_val);
-//				}
-//				addr=addr+4;
+//			/* calculate the number of bit-flip in one cell */
+//			puf_read_val=mmio_read32(addr);
+//			unsigned int sum_flip=cal(puf_read_val);
+//			if(sum_flip!=0)
+//			{
+//				puf_cell+=sum_flip;
+//				printf("start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", start_addr, end_addr, addr, bank, row, col, puf_read_val);
 //			}
 //
 //		}
+//
 //	}
+        addr = start_addr;
+	for (int i = 0; ; i++)
+	{
+//		addr=start_addr+i*itvl*0x1000;
+
+	    if(addr >= end_addr)
+	    	break;
+		else if((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xe0000000))
+		{
+//			for(unsigned int j=0; j<1024; j++)
+//			{
+
+				unsigned long bank, row, col;
+			    if(add_mode==0)
+				{
+					bank=(0x1c000000&addr)>>26;				//calculate the number of bank
+				    row=(0x03fff000&addr)>>12;				//calculate the number of row
+				    col=(0x00000ffc&addr)>>2;				//calculate the number of column
+				}
+				else
+				{
+					row=(0x1fff8000&addr)>>15;				//28:15
+				    bank=(0x00007000&addr)>>12;				//14:12
+				    col=(0x00000ffc&addr)>>2;				//calculate the number of column
+				}
+
+				/* calculate the number of bit-flip in one cell */
+				puf_read_val=mmio_read32(addr);
+				unsigned int sum_flip=cal(puf_read_val);
+				if(sum_flip!=0)
+				{
+					puf_cell+=sum_flip;
+					printf("iteration = %d, start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", i, start_addr, end_addr, addr, bank, row, col, puf_read_val);
+				}
+				addr=addr+4;
+//			}
+		}
+	}
 //	while(1)
 //	{
 		printf("in puf_read_itvl GetPuf.c puf_cell=%d\n",puf_cell);
