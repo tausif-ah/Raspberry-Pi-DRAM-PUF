@@ -53,7 +53,7 @@ void GPUfunc(int dcy_func)
 }
 void Refresh()
 {
-//  printf("refresh function in getpuf.c\n");
+  printf("refresh function in getpuf.c\n");
 	int length=sizeof(MRList)/4;
 	unsigned long temp=0xc0000000;
 	unsigned int t;
@@ -86,7 +86,7 @@ void Refresh()
 
 void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 {
-//	printf("manual refresh function in getpuf.c\n");
+	printf("manual refresh function in getpuf.c\n");
 	int freq_func=nfreq;			// func_freq=n*50us
 	int ftp=0;
 	int mtp=0;
@@ -96,12 +96,12 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	{
 		for(int tp=0;tp<=decay_time*20000;)
 		{
-//			printf("first for loop in manual refresh function in getpuf.c\n");
+			printf("first for loop in manual refresh function in getpuf.c\n");
 			if(freq_func==0)
 			{
 				while(1)
 				{
-//					printf("infinite while loop in manual refresh function in getpuf.c\n");
+					printf("infinite while loop in manual refresh function in getpuf.c\n");
 					__asm__ __volatile__ ("nop" :::);
 					uint32_t tin=ST_CLO;
 					
@@ -122,7 +122,7 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 			}
 			else
 			{
-//				printf("else block 1 of manual refresh function in getpuf.c\n");
+				printf("else block 1 of manual refresh function in getpuf.c\n");
 				ftp+=1;
 				mtp+=1;
 				tp+=1;
@@ -155,10 +155,10 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	}
 	else
 	{
-//		printf("else block 2 for refresh function in getpuf.c\n");
+		printf("else block 2 for refresh function in getpuf.c\n");
 		for(int tp=0;tp<=decay_time*1000;)
 		{
-//			printf("2nd for loop in manual refresh function in getpuf.c\n");
+			printf("2nd for loop in manual refresh function in getpuf.c\n");
 			delay_ms(1);
 			tp+=1;
 			if(tp%64==0)
@@ -171,7 +171,7 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	
 	if(function_count!=0)
 	{
-//		printf("manual refresh function count in getpuf.c\n");
+		printf("manual refresh function count in getpuf.c\n");
 		printf("function_count = %d\n",function_count );
 		printf("function time = %d us\n",ufunc_t);
 	}
@@ -189,7 +189,7 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 **/
 unsigned long cal(unsigned long x)
 {
-//	printf("cal function in getpuf.c\n");
+	printf("cal function in getpuf.c\n");
     unsigned long n;
     for(n=0; x; n++)
         x &= x-1;
@@ -204,10 +204,10 @@ unsigned long cal(unsigned long x)
 **/
 void puf_init(unsigned long addr,unsigned int puf_size, unsigned int init_value)
 {
-//	printf("puf init function in getpuf.c\n");
+	printf("puf init function in getpuf.c\n");
 	for(unsigned int puf_write_loop=0;puf_write_loop<puf_size;puf_write_loop++)
 	{
-		//printf("puf init for loop in getpuf.c\n");
+		printf("puf init for loop in getpuf.c\n");
 		if ((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xdf000000))
 		{
 			if(inArray(addr))
@@ -230,7 +230,7 @@ void puf_init(unsigned long addr,unsigned int puf_size, unsigned int init_value)
 **/
 void puf_init_all(unsigned long start_addr, unsigned long end_addr, unsigned int init_value)
 {
-//	printf("puf init all function in getpuf.c\n");
+	printf("puf init all function in getpuf.c\n");
 	unsigned long addr;
 	for(addr=start_addr; addr<=end_addr; addr+=4)
 	{
@@ -255,50 +255,83 @@ void puf_init_all(unsigned long start_addr, unsigned long end_addr, unsigned int
 **/
 void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned int add_mode)
 {
-//	printf("puf read itvl function in getpuf.c\n");
+	printf("puf read itvl function in getpuf.c\n");
 	unsigned long itvl=(end_addr-start_addr)/0x1000000;
 
 	unsigned int puf_read_val=0;
 	unsigned long puf_cell=0;
 	unsigned long addr;
-	for (int i = 0; ; i++)
+
+	for (addr=start_addr;addr<end_addr;addr+=4)
 	{
-		addr=start_addr+i*itvl*0x1000;
-
-	    if(addr >= end_addr)
-	    	break;
-		else if((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xe0000000))
+		if((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xe0000000))
 		{
-			for(unsigned int j=0; j<1024; j++)
+
+
+			unsigned long bank, row, col;
+			if(add_mode==0)
 			{
+				bank=(0x1c000000&addr)>>26;				//calculate the number of bank
+				row=(0x03fff000&addr)>>12;				//calculate the number of row
+				col=(0x00000ffc&addr)>>2;				//calculate the number of column
+			}
+			else
+			{
+				row=(0x1fff8000&addr)>>15;				//28:15
+				bank=(0x00007000&addr)>>12;				//14:12
+				col=(0x00000ffc&addr)>>2;				//calculate the number of column
+			}
 
-				unsigned long bank, row, col;
-			    if(add_mode==0)
-				{
-					bank=(0x1c000000&addr)>>26;				//calculate the number of bank
-				    row=(0x03fff000&addr)>>12;				//calculate the number of row
-				    col=(0x00000ffc&addr)>>2;				//calculate the number of column
-				}
-				else
-				{
-					row=(0x1fff8000&addr)>>15;				//28:15
-				    bank=(0x00007000&addr)>>12;				//14:12
-				    col=(0x00000ffc&addr)>>2;				//calculate the number of column
-				}
-
-				/* calculate the number of bit-flip in one cell */
-				puf_read_val=mmio_read32(addr);
-				unsigned int sum_flip=cal(puf_read_val);
-				if(sum_flip!=0)
-				{
-					puf_cell+=sum_flip;
-					printf("iteration = %d, start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", i, start_addr, end_addr, addr, bank, row, col, puf_read_val);
-				}
-				addr=addr+4;
+			/* calculate the number of bit-flip in one cell */
+			puf_read_val=mmio_read32(addr);
+			unsigned int sum_flip=cal(puf_read_val);
+			if(sum_flip!=0)
+			{
+				puf_cell+=sum_flip;
+				printf("start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", start_addr, end_addr, addr, bank, row, col, puf_read_val);
 			}
 
 		}
+
 	}
+//	for (int i = 0; ; i++)
+//	{
+//		addr=start_addr+i*itvl*0x1000;
+//
+//	    if(addr >= end_addr)
+//	    	break;
+//		else if((addr>=0xc3000000&&addr<0xcf000000)||(addr>=0xd0000000&&addr<0xe0000000))
+//		{
+//			for(unsigned int j=0; j<1024; j++)
+//			{
+//
+//				unsigned long bank, row, col;
+//			    if(add_mode==0)
+//				{
+//					bank=(0x1c000000&addr)>>26;				//calculate the number of bank
+//				    row=(0x03fff000&addr)>>12;				//calculate the number of row
+//				    col=(0x00000ffc&addr)>>2;				//calculate the number of column
+//				}
+//				else
+//				{
+//					row=(0x1fff8000&addr)>>15;				//28:15
+//				    bank=(0x00007000&addr)>>12;				//14:12
+//				    col=(0x00000ffc&addr)>>2;				//calculate the number of column
+//				}
+//
+//				/* calculate the number of bit-flip in one cell */
+//				puf_read_val=mmio_read32(addr);
+//				unsigned int sum_flip=cal(puf_read_val);
+//				if(sum_flip!=0)
+//				{
+//					puf_cell+=sum_flip;
+//					printf("iteration = %d, start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", i, start_addr, end_addr, addr, bank, row, col, puf_read_val);
+//				}
+//				addr=addr+4;
+//			}
+//
+//		}
+//	}
 //	while(1)
 //	{
 		printf("in puf_read_itvl GetPuf.c puf_cell=%d\n",puf_cell);
@@ -316,7 +349,7 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 **/
 uint32_t puf_read_all(unsigned long start_addr, unsigned long end_addr, unsigned int add_mode)
 {
-//  printf("puf read all function in getpuf.c\n");
+  printf("puf read all function in getpuf.c\n");
 	putchar(0x16); // SYN
 	putchar(0x16); // SYN
 	putchar(0x16); // SYN
@@ -364,7 +397,7 @@ uint32_t puf_read_all(unsigned long start_addr, unsigned long end_addr, unsigned
 **/
 void puf_read_ext(unsigned long start_addr, unsigned long end_addr, unsigned int add_mode)
 {
-//  printf("puf read ext function in getpuf.c\n");
+  printf("puf read ext function in getpuf.c\n");
     printf("&|");
 	unsigned int puf_read_val=0;
 	unsigned long addr;
@@ -412,7 +445,7 @@ void puf_read_ext(unsigned long start_addr, unsigned long end_addr, unsigned int
 **/
 void puf_read_brc(unsigned long start_addr, unsigned long end_addr)
 {
-//  printf("puf read brc function in getpuf.c\n");
+  printf("puf read brc function in getpuf.c\n");
 	unsigned int puf_read_val=0;
 	unsigned long addr;
 	unsigned long sum_flip=0;
@@ -446,7 +479,7 @@ void puf_read_brc(unsigned long start_addr, unsigned long end_addr)
 **/
 void puf_extract_all(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value, int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq)
 {
-//  printf("puf extract all function in getpuf.c\n");
+  printf("puf extract all function in getpuf.c\n");
 	/* PUF Init */
 	puf_init_all(start_addr,end_addr,puf_init_value);
 	printf("puf init complete\n");
@@ -481,7 +514,7 @@ void puf_extract_all(unsigned long start_addr,unsigned long end_addr, unsigned l
 **/
 void puf_extracted(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value, int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq)
 {
-//  printf("puf extracted function in getpuf.c\n");
+  printf("puf extracted function in getpuf.c\n");
 	/* PUF Init */
 	puf_init_all(start_addr,end_addr,puf_init_value);
 	printf("puf init complete\n");
@@ -517,7 +550,7 @@ void puf_extracted(unsigned long start_addr,unsigned long end_addr, unsigned lon
 **/
 void puf_extract_brc(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value, int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq)
 {
-//  printf("puf extract brc function in getpuf.c\n");
+  printf("puf extract brc function in getpuf.c\n");
 
 	/* PUF Init */
 	puf_init_all(start_addr,end_addr,puf_init_value);
@@ -556,7 +589,7 @@ void puf_extract_brc(unsigned long start_addr,unsigned long end_addr, unsigned l
 **/
 void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value,int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq)
 {
-//  printf("puf extract itvl function in getpuf.c\n");
+  printf("puf extract itvl function in getpuf.c\n");
 	/* PUF Init */
 	puf_init_all(start_addr,end_addr,puf_init_value);
 	printf("puf init complete\n");
