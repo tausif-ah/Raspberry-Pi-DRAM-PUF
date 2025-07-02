@@ -2,6 +2,7 @@
 #include "hardware.h"
 #include "PufAddress.h"
 #include "function.c"
+#include <stdlib.h>
 
 extern void timing_init();
 
@@ -323,19 +324,21 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 				/* calculate the number of bit-flip in one cell */
 				puf_read_val=mmio_read32(addr);
 				unsigned int sum_flip=cal(puf_read_val);
-				if(sum_flip!=0)
-				{
-					puf_cell+=sum_flip;
+//				if(sum_flip!=0)
+//				{
+//					puf_cell+=sum_flip;
 					printf("iteration = %d, start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", i, start_addr, end_addr, addr, bank, row, col, puf_read_val);
-				}
+//				}
 				addr=addr+4;
 //			}
 		}
 	}
 //	while(1)
 //	{
-		printf("in puf_read_itvl GetPuf.c puf_cell=%d\n",puf_cell);
-		delay_ms(100);
+//		printf("in puf_read_itvl GetPuf.c puf_cell=%d\n",puf_cell);
+        printf("in puf_read_itvl function in getpuf.c\n");
+        exit(0);
+//		delay_ms(100);
 
 //	}
 }
