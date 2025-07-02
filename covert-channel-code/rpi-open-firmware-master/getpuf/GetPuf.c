@@ -2,7 +2,6 @@
 #include "hardware.h"
 #include "PufAddress.h"
 #include "function.c"
-#include <stdlib.h>
 
 extern void timing_init();
 
@@ -337,8 +336,7 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 //	{
 //		printf("in puf_read_itvl GetPuf.c puf_cell=%d\n",puf_cell);
         printf("in puf_read_itvl function in getpuf.c\n");
-        exit(0);
-//		delay_ms(100);
+		delay_ms(100);
 
 //	}
 }
