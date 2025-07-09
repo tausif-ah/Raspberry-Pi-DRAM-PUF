@@ -96,12 +96,10 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	{
 		for(int tp=0;tp<=decay_time*20000;)
 		{
-//			printf("first for loop in manual refresh function in getpuf.c\n");
 			if(freq_func==0)
 			{
 				while(1)
 				{
-//					printf("infinite while loop in manual refresh function in getpuf.c\n");
 					__asm__ __volatile__ ("nop" :::);
 					uint32_t tin=ST_CLO;
 					
@@ -122,7 +120,6 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 			}
 			else
 			{
-//				printf("else block 1 of manual refresh function in getpuf.c\n");
 				ftp+=1;
 				mtp+=1;
 				tp+=1;
@@ -155,10 +152,8 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	}
 	else
 	{
-//		printf("else block 2 for refresh function in getpuf.c\n");
 		for(int tp=0;tp<=decay_time*1000;)
 		{
-//			printf("2nd for loop in manual refresh function in getpuf.c\n");
 			delay_ms(1);
 			tp+=1;
 			if(tp%64==0)
@@ -171,12 +166,11 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 	
 	if(function_count!=0)
 	{
-//		printf("manual refresh function count in getpuf.c\n");
 		printf("function_count = %d\n",function_count );
 		printf("function time = %d us\n",ufunc_t);
 	}
 	
-	printf("Manually refresh");
+	printf("Manually refresh\n");
 }
 
 /**
@@ -189,7 +183,7 @@ void ManuallyRefresh(int decay_time,int dcy_func,int nfreq)
 **/
 unsigned long cal(unsigned long x)
 {
-	printf("cal function in getpuf.c\n");
+//	printf("cal function in getpuf.c\n");
     unsigned long n;
     for(n=0; x; n++)
         x &= x-1;
@@ -325,7 +319,7 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 				unsigned int sum_flip=cal(puf_read_val);
 //				if(sum_flip!=0)
 //				{
-//					puf_cell+=sum_flip;
+					puf_cell+=sum_flip;
 					printf("iteration = %d, start addr = %lu, end addr = %lu, cur addr = %lu, bank = %lu, row = %04X, col = %03X, value = %08X\n", i, start_addr, end_addr, addr, bank, row, col, puf_read_val);
 //				}
 				addr=addr+4;
@@ -334,8 +328,8 @@ void puf_read_itvl(unsigned long start_addr, unsigned long end_addr, unsigned in
 	}
 //	while(1)
 //	{
-//		printf("in puf_read_itvl GetPuf.c puf_cell=%d\n",puf_cell);
-        printf("in puf_read_itvl function in getpuf.c\n");
+		printf("in puf_read_itvl GetPuf.c no of flips =%d\n",puf_cell);
+//        printf("in puf_read_itvl function in getpuf.c\n");
 		delay_ms(100);
 
 //	}
@@ -499,7 +493,7 @@ void puf_extract_all(unsigned long start_addr,unsigned long end_addr, unsigned l
 		ManuallyRefresh(decay_time, dcy_func, nfreq);
 	else
 		ManuallyRefresh(decay_time, 0, 0);
-	printf("decay completed\n");
+	printf("in func puf_extract_all decay completed\n");
 
 	/* Enable Refresh */
 	timing_init();
@@ -534,7 +528,7 @@ void puf_extracted(unsigned long start_addr,unsigned long end_addr, unsigned lon
 		ManuallyRefresh(decay_time, dcy_func, nfreq);
 	else
 		ManuallyRefresh(decay_time, 0, 0);
-	printf("decay completed\n");
+	printf("in func puf_extracted decay completed\n");
 
 	/* Enable Refresh */
 	timing_init();
@@ -571,7 +565,7 @@ void puf_extract_brc(unsigned long start_addr,unsigned long end_addr, unsigned l
 		ManuallyRefresh(decay_time, dcy_func, nfreq);
 	else
 		ManuallyRefresh(decay_time, 0, 0);
-	printf("decay completed\n");
+	printf("in func puf_extract_brc decay completed\n");
 
 	/* Enable Refresh */
 	timing_init();
@@ -609,7 +603,7 @@ void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned 
 		ManuallyRefresh(decay_time, dcy_func, nfreq);
 	else
 		ManuallyRefresh(decay_time, 0, 0);
-	printf("decay completed\n");
+	printf("in func puf_extract_itvl decay completed\n");
 
 	/* Enable Refresh */
 	timing_init();
