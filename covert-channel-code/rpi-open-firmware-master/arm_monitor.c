@@ -53,7 +53,8 @@ int get_mode()
 
 void get_no_of_exps()
 {
-  noofexps = ARM_1_MAIL1_RD;
+//  noofexps = ARM_1_MAIL1_RD;
+  noofexps = 5;
   printf("Number of experiments: %d\n\n", noofexps);
 }
 

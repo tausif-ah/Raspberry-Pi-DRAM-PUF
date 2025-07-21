@@ -114,7 +114,7 @@ extern void execute_puf(int);
 
 extern void cpu_code();
 
-#define PUF_ARGS_AMT 9
+#define PUF_ARGS_AMT 8
 
 volatile int time=0;
 /**
@@ -136,21 +136,21 @@ void sleh_irq(vc4_saved_state_t* pcb, uint32_t tp)
 		time++;
 		switch (time%PUF_ARGS_AMT)
 		{
-            case  1: get_no_of_exps();
-              		 break;
-			case  2: get_address_mode();
+//            case  1: get_no_of_exps();
+//              		 break;
+			case  1: get_address_mode();
 					 break;
-			case  3: get_func_loc();
+			case  2: get_func_loc();
 					 break;
-			case  4: get_start_address();
+			case  3: get_start_address();
 					 break;
-			case  5: get_end_address();
+			case  4: get_end_address();
 					 break;
-			case  6: get_init_value();
+			case  5: get_init_value();
 					 break;
-			case  7: get_decay_func();
+			case  6: get_decay_func();
 					 break;
-			case  8: get_func_freq();
+			case  7: get_func_freq();
 					 break;
 			case  0: get_decay_time();
 					 execute_puf(mode);
@@ -166,21 +166,21 @@ void sleh_irq(vc4_saved_state_t* pcb, uint32_t tp)
 		time++;
 		switch (time%PUF_ARGS_AMT)
 		{
-            case  1: get_no_of_exps();
-              		 break;
-			case  2: get_address_mode();
+//            case  1: get_no_of_exps();
+//              		 break;
+			case  1: get_address_mode();
 					 break;
-			case  3: get_func_loc();
+			case  2: get_func_loc();
 					 break;
-			case  4: get_start_address();
+			case  3: get_start_address();
 					 break;
-			case  5: get_end_address();
+			case  4: get_end_address();
 					 break;
-			case  6: get_init_value();
+			case  5: get_init_value();
 					 break;
-			case  7: get_decay_func();
+			case  6: get_decay_func();
 					 break;
-			case  8: get_func_freq();
+			case  7: get_func_freq();
 					 break;
 			case  0: get_decay_time();
 					 execute_puf(mode);
@@ -195,21 +195,21 @@ void sleh_irq(vc4_saved_state_t* pcb, uint32_t tp)
 		time++;
 		switch (time%PUF_ARGS_AMT)
 		{
-            case  1: get_no_of_exps();
-              		 break;
-			case  2: get_address_mode();
+//            case  1: get_no_of_exps();
+//              		 break;
+			case  1: get_address_mode();
 					 break;
-			case  3: get_func_loc();
+			case  2: get_func_loc();
 					 break;
-			case  4: get_start_address();
+			case  3: get_start_address();
 					 break;
-			case  5: get_end_address();
+			case  4: get_end_address();
 					 break;
-			case  6: get_init_value();
+			case  5: get_init_value();
 					 break;
-			case  7: get_decay_func();
+			case  6: get_decay_func();
 					 break;
-			case  8: get_func_freq();
+			case  7: get_func_freq();
 					 break;
 			case  0: get_decay_time();
 					 execute_puf(mode);
@@ -224,21 +224,21 @@ void sleh_irq(vc4_saved_state_t* pcb, uint32_t tp)
 		time++;
 		switch (time%PUF_ARGS_AMT)
 		{
-            case  1: get_no_of_exps();
-              		 break;
-			case  2: get_address_mode();
+//            case  1: get_no_of_exps();
+//              		 break;
+			case  1: get_address_mode();
                      break;
-			case  3: get_func_loc();
+			case  2: get_func_loc();
 					 break;
-			case  4: get_start_address();
+			case  3: get_start_address();
 					 break;
-			case  5: get_end_address();
+			case  4: get_end_address();
 					 break;
-			case  6: get_init_value();
+			case  5: get_init_value();
 					 break;
-			case  7: get_decay_func();
+			case  6: get_decay_func();
 					 break;
-			case  8: get_func_freq();
+			case  7: get_func_freq();
 					 break;
 			case  0: get_decay_time();
 					 execute_puf(mode);
