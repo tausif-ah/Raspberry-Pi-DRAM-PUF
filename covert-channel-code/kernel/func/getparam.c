@@ -98,6 +98,26 @@ uint32_t getaddmode() {
     }
 }
 
+// get number of experiments
+int getnoofexps() {
+  int noofexps = 0;
+  short flag = 0;
+  unsigned char temp;
+    while ((int) (temp = uart_getc()) != 13) {
+        if (48 <= temp && temp <= 57) {
+            uart_putc(temp);
+            int add = (int) temp - 48;
+            noofexps = noofexps * 10 + add;
+            flag = 1;
+        }
+    }
+    uart_putc(temp);
+    if (flag == 0) {
+        return 1;
+    }
+    return noofexps;
+}
+
 // get decay_time
 int getdecaytime() {
 //    uart_puts("getdecaytime func in getparam.c\n");

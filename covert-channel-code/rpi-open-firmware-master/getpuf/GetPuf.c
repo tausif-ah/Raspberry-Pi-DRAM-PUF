@@ -582,10 +582,15 @@ void puf_extract_brc(unsigned long start_addr,unsigned long end_addr, unsigned l
  *
  * P.S. Test one row for each interval
 **/
-void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value,int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq)
+void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value,int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq, int no_of_exps)
 {
   printf("puf extract itvl function in getpuf.c\n");
-	/* PUF Init */
+  printf("No of Exps in getpuf.c = %d\n", no_of_exps);
+
+  //iterating over the PUF extraction process
+  for(int i=0;i<no_of_exps;i++) {
+    printf("Experiment %d\n", i+1)
+    /* PUF Init */
 	puf_init_all(start_addr,end_addr,puf_init_value);
 	printf("puf init complete\n");
 
@@ -610,5 +615,7 @@ void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned 
 
 	/* PUF Read (on GPU)*/
 	puf_read_itvl(start_addr, end_addr, add_mode);
+    delay_ms(2000);
+  }
 }
 

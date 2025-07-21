@@ -25,7 +25,7 @@ First stage monitor.
 
 #define logf(fmt, ...) printf("[SDRAM:%s]: " fmt, __FUNCTION__, ##__VA_ARGS__);
 
-volatile unsigned int addmode, bank, row, col, mode, address, funcloc, dcyfunc, nfreq;
+volatile unsigned int noofexps, addmode, bank, row, col, mode, address, funcloc, dcyfunc, nfreq;
 volatile unsigned int stradd, endadd, initvalue, pufsize, decaytime, cputemp, interval;
 
 int get_mode()
@@ -49,6 +49,12 @@ int get_mode()
 	}
 	
 	return mode;
+}
+
+void get_no_of_exps()
+{
+  noofexps = ARM_1_MAIL1_RD;
+  printf("Number of experiments: %d\n\n", noofexps);
 }
 
 void get_address_mode()
@@ -164,7 +170,7 @@ void execute_puf(int mode)
 	} else if (mode==2) {
 		puf_extract_brc(stradd, endadd, initvalue, decaytime, addmode, funcloc, dcyfunc, nfreq);
 	} else if (mode==3) {
-		puf_extract_itvl(stradd,endadd,initvalue,decaytime, addmode, funcloc, dcyfunc, nfreq);
+		puf_extract_itvl(stradd,endadd,initvalue,decaytime, addmode, funcloc, dcyfunc, nfreq, noofexps);
 	} else if (mode==4) {
 		cpu_code();
 	}
