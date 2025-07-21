@@ -377,11 +377,11 @@ void TestOneRow() {
  * P.S. Test one row for each interval
 **/
 void TestAtInterval() {
-  //getting the number of experiments to run
-  	uart_puts("Input number of experiments|: ");
-  	int noofexps = getnoofexps();
-  	mailbox_write(noofexps);
-  	delay_ms(50);
+//  //getting the number of experiments to run
+//  	uart_puts("Input number of experiments|: ");
+//  	int noofexps = getnoofexps();
+//  	mailbox_write(noofexps);
+//  	delay_ms(50);
 
 //    uart_puts("test at interval func in test.c\n");
     uart_puts("Choose address mode: 0:brc 1:rbc|: ");
