@@ -589,7 +589,7 @@ void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned 
 
   //iterating over the PUF extraction process
   for(int i=0;i<no_of_exps;i++) {
-    printf("Experiment %d\n", i+1)
+    printf("Experiment %d starting\n", i+1);
     /* PUF Init */
 	puf_init_all(start_addr,end_addr,puf_init_value);
 	printf("puf init complete\n");
@@ -615,6 +615,7 @@ void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned 
 
 	/* PUF Read (on GPU)*/
 	puf_read_itvl(start_addr, end_addr, add_mode);
+    printf("Experiment %d finished\n", i+1);
     delay_ms(2000);
   }
 }
