@@ -584,13 +584,13 @@ void puf_extract_brc(unsigned long start_addr,unsigned long end_addr, unsigned l
 **/
 void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value,int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq)
 {
-  int no_of_exps = 5;
+//  int no_of_exps = 5;
   printf("puf extract itvl function in getpuf.c\n");
-  printf("No of Exps in getpuf.c = %d\n", no_of_exps);
+//  printf("No of Exps in getpuf.c = %d\n", no_of_exps);
 
   //iterating over the PUF extraction process
-  for(int i=0;i<no_of_exps;i++) {
-    printf("Experiment %d starting\n", i+1);
+//  for(int i=0;i<no_of_exps;i++) {
+//    printf("Experiment %d starting\n", i+1);
     /* PUF Init */
 	puf_init_all(start_addr,end_addr,puf_init_value);
 	printf("puf init complete\n");
@@ -616,8 +616,8 @@ void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned 
 
 	/* PUF Read (on GPU)*/
 	puf_read_itvl(start_addr, end_addr, add_mode);
-    printf("Experiment %d finished\n", i+1);
-    delay_ms(2000);
-  }
+//    printf("Experiment %d finished\n", i+1);
+//    delay_ms(2000);
+//  }
 }
 
