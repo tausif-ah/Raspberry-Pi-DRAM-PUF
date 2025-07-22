@@ -582,8 +582,9 @@ void puf_extract_brc(unsigned long start_addr,unsigned long end_addr, unsigned l
  *
  * P.S. Test one row for each interval
 **/
-void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value,int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq, int no_of_exps)
+void puf_extract_itvl(unsigned long start_addr,unsigned long end_addr, unsigned long puf_init_value,int decay_time, int add_mode, int func_loc, int dcy_func, int nfreq)
 {
+  int no_of_exps = 5;
   printf("puf extract itvl function in getpuf.c\n");
   printf("No of Exps in getpuf.c = %d\n", no_of_exps);
 

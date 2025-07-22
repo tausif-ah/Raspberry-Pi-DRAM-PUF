@@ -51,12 +51,12 @@ int get_mode()
 	return mode;
 }
 
-void get_no_of_exps()
-{
-//  noofexps = ARM_1_MAIL1_RD;
-  noofexps = 5;
-  printf("Number of experiments: %d\n\n", noofexps);
-}
+//void get_no_of_exps()
+//{
+////  noofexps = ARM_1_MAIL1_RD;
+//  noofexps = 5;
+//  printf("Number of experiments: %d\n\n", noofexps);
+//}
 
 void get_address_mode()
 {
@@ -171,7 +171,7 @@ void execute_puf(int mode)
 	} else if (mode==2) {
 		puf_extract_brc(stradd, endadd, initvalue, decaytime, addmode, funcloc, dcyfunc, nfreq);
 	} else if (mode==3) {
-		puf_extract_itvl(stradd,endadd,initvalue,decaytime, addmode, funcloc, dcyfunc, nfreq, noofexps);
+		puf_extract_itvl(stradd,endadd,initvalue,decaytime, addmode, funcloc, dcyfunc, nfreq);
 	} else if (mode==4) {
 		cpu_code();
 	}

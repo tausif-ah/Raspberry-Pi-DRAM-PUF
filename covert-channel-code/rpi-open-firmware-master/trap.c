@@ -103,7 +103,7 @@ extern int get_mode();
 extern void get_func_loc();
 extern void get_decay_func();
 extern void get_func_freq();
-extern void get_no_of_exps();
+//extern void get_no_of_exps();
 extern void get_address_mode();
 extern void get_decay_time();
 extern void get_start_address();
