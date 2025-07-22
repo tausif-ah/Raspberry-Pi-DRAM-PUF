@@ -103,7 +103,6 @@ extern int get_mode();
 extern void get_func_loc();
 extern void get_decay_func();
 extern void get_func_freq();
-//extern void get_no_of_exps();
 extern void get_address_mode();
 extern void get_decay_time();
 extern void get_start_address();
@@ -136,8 +135,6 @@ void sleh_irq(vc4_saved_state_t* pcb, uint32_t tp)
 		time++;
 		switch (time%PUF_ARGS_AMT)
 		{
-//            case  1: get_no_of_exps();
-//              		 break;
 			case  1: get_address_mode();
 					 break;
 			case  2: get_func_loc();
@@ -166,8 +163,6 @@ void sleh_irq(vc4_saved_state_t* pcb, uint32_t tp)
 		time++;
 		switch (time%PUF_ARGS_AMT)
 		{
-//            case  1: get_no_of_exps();
-//              		 break;
 			case  1: get_address_mode();
 					 break;
 			case  2: get_func_loc();
@@ -195,8 +190,6 @@ void sleh_irq(vc4_saved_state_t* pcb, uint32_t tp)
 		time++;
 		switch (time%PUF_ARGS_AMT)
 		{
-//            case  1: get_no_of_exps();
-//              		 break;
 			case  1: get_address_mode();
 					 break;
 			case  2: get_func_loc();
@@ -224,8 +217,6 @@ void sleh_irq(vc4_saved_state_t* pcb, uint32_t tp)
 		time++;
 		switch (time%PUF_ARGS_AMT)
 		{
-//            case  1: get_no_of_exps();
-//              		 break;
 			case  1: get_address_mode();
                      break;
 			case  2: get_func_loc();
